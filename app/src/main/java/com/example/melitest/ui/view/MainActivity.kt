@@ -2,21 +2,21 @@ package com.example.melitest.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
+import android.widget.ArrayAdapter
+import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.example.melitest.R
-import com.example.melitest.data.SearchRepository
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.melitest.data.enums.Site
+import com.example.melitest.data.model.ResultsModel
 import com.example.melitest.databinding.ActivityMainBinding
+import com.example.melitest.ui.adapter.ProductsAdapter
 import com.example.melitest.ui.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
+    androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -30,11 +30,45 @@ class MainActivity : AppCompatActivity() {
 
         searchViewModel.onCreate()
         searchViewModel.searchModel.observe(this, Observer {
-            binding.tvSize.setText(it?.results?.size.toString())
+            val results = it?.results
+            if (results != null) {
+                loadResults(results)
+            }
         })
+        loadSpinnerSite()
+        binding.svProducts.setOnQueryTextListener(this)
     }
 
-    private fun searchProducts(site: String, search: String) {
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            searchProducts(query)
+        };
+        return true
+    }
 
+    override fun onQueryTextChange(query: String?): Boolean {
+        return true
+    }
+
+    private fun searchProducts(search: String) {
+        searchViewModel.searchProducts(binding.spSite.selectedItem.toString(), search)
+    }
+
+    private fun loadSpinnerSite() {
+
+        val options = Site.values().map { it.name }
+
+        val adapter = ArrayAdapter(
+            this, android.R.layout.simple_spinner_item, options
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spSite.adapter = adapter
+    }
+
+    private fun loadResults(results: MutableList<ResultsModel>) {
+
+        binding.rvProducts.setHasFixedSize(true)
+        binding.rvProducts.layoutManager = LinearLayoutManager(this)
+        binding.rvProducts.adapter = ProductsAdapter(results)
     }
 }

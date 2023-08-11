@@ -1,4 +1,4 @@
-package com.example.melitest.core.network
+package com.example.melitest.data.network
 
 import com.example.melitest.data.model.SearchModel
 import retrofit2.Response
@@ -11,8 +11,8 @@ import retrofit2.http.Query
 import retrofit2.http.Url
 
 interface SearchApiClient {
-    @GET()
+    @GET("{option}/search")
     suspend fun searchProducts(
-        @Url url: String
+        @Path("option") site: String, @Query("q") query: String
     ): Response<SearchModel>
 }

@@ -11,6 +11,6 @@ data class AttributesModel(
     @SerializedName("attribute_group_name") var attributeGroupName: String? = null,
     @SerializedName("value_struct") var valueStruct: ValueStructModel? = ValueStructModel(),
     @SerializedName("values") var values: MutableList<ValuesModel>? = null,
-    @SerializedName("source") var source: Long? = null,
+    @SerializedName("source") var source: Float? = null,
     @SerializedName("value_type") var valueType: String? = null
 )

@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class InstallmentsModel(
 
-    @SerializedName("quantity") var quantity: Long? = null,
-    @SerializedName("amount") var amount: Double? = null,
-    @SerializedName("rate") var rate: Long? = null,
+    @SerializedName("quantity") var quantity: Float? = null,
+    @SerializedName("amount") var amount: Float? = null,
+    @SerializedName("rate") var rate: Float? = null,
     @SerializedName("currency_id") var currencyId: String? = null
 
 )

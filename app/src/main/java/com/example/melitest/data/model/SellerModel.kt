@@ -3,7 +3,7 @@ package com.example.melitest.data.model
 import com.google.gson.annotations.SerializedName
 
 data class SellerModel(
-    @SerializedName("id") var id: Long? = null,
+    @SerializedName("id") var id: Float? = null,
     @SerializedName("nickname") var nickname: String? = null,
     @SerializedName("car_dealer") var carDealer: Boolean? = null,
     @SerializedName("real_estate_agency") var realEstateAgency: Boolean? = null,

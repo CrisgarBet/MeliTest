@@ -7,39 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.MainActivity">
 
-    <TextView
-        android:id="@+id/tvSize"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spSite"
+        android:layout_width="match_parent"
+        android:spinnerMode="dialog"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="16dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="italic"
-        android:text="hola"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"/>
 
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/svProducts"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintTop_toBottomOf="@+id/spSite"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDogs"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+
+        android:id="@+id/rvProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/svProducts" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

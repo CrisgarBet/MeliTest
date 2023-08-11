@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class DelayedHandlingTimeModel(
     @SerializedName("period") var period: String? = null,
-    @SerializedName("rate") var rate: Double? = null,
-    @SerializedName("value") var value: Long? = null
+    @SerializedName("rate") var rate: Float? = null,
+    @SerializedName("value") var value: Float? = null
 )

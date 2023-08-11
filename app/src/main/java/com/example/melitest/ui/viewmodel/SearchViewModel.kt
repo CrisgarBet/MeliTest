@@ -16,9 +16,13 @@ class SearchViewModel @Inject constructor(private val searchProductsUseCase: Sea
     val searchModel = MutableLiveData<SearchModel?>()
 
     fun onCreate() {
+
+    }
+
+    fun searchProducts(site: String, query: String) {
         viewModelScope.launch {
-            val result: SearchModel? = searchProductsUseCase.searchProduct("MCO", "telefono")
-            if (result!=null) {
+            val result: SearchModel? = searchProductsUseCase.searchProduct(site, query)
+            if (result != null) {
                 searchModel.postValue(result)
             }
         }

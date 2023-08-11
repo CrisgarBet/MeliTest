@@ -1,6 +1,6 @@
-package com.example.melitest.di
+package com.example.melitest.core
 
-import com.example.melitest.core.network.SearchApiClient
+import com.example.melitest.data.network.SearchApiClient
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
