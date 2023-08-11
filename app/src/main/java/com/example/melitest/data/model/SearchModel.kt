@@ -7,9 +7,9 @@ data class SearchModel(
     @SerializedName("country_default_time_zone") var countryDefaultTimeZone: String? = null,
     @SerializedName("query") var query: String? = null,
     @SerializedName("paging") var paging: PagingModel? = PagingModel(),
-    @SerializedName("results") var results: ArrayList<ResultsModel> = arrayListOf(),
+    @SerializedName("results") var results: MutableList<ResultsModel>? = null,
     @SerializedName("sort") var sort: SortModel? = SortModel(),
-    @SerializedName("available_sorts") var availableSorts: ArrayList<AvailableSortsModel> = arrayListOf(),
-    @SerializedName("filters") var filters: ArrayList<FiltersModel> = arrayListOf(),
-    @SerializedName("available_filters") var availableFilters: ArrayList<AvailableFiltersModel> = arrayListOf()
+    @SerializedName("available_sorts") var availableSorts: MutableList<AvailableSortsModel>? = null,
+    @SerializedName("filters") var filters: MutableList<FiltersModel>? = null,
+    @SerializedName("available_filters") var availableFilters: MutableList<AvailableFiltersModel>? = null
 )

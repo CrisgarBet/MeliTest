@@ -7,7 +7,7 @@ data class ShippingModel(
     @SerializedName("free_shipping") var freeShipping: Boolean? = null,
     @SerializedName("logistic_type") var logisticType: String? = null,
     @SerializedName("mode") var mode: String? = null,
-    @SerializedName("tags") var tags: ArrayList<String> = arrayListOf(),
+    @SerializedName("tags") var tags: MutableList<String>? = null,
     @SerializedName("benefits") var benefits: String? = null,
     @SerializedName("promise") var promise: String? = null
 )

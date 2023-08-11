@@ -3,13 +3,13 @@ package com.example.melitest.data.model
 import com.google.gson.annotations.SerializedName
 
 data class SellerModel(
-    @SerializedName("id") var id: Int? = null,
+    @SerializedName("id") var id: Long? = null,
     @SerializedName("nickname") var nickname: String? = null,
     @SerializedName("car_dealer") var carDealer: Boolean? = null,
     @SerializedName("real_estate_agency") var realEstateAgency: Boolean? = null,
     @SerializedName("_") var underscore: Boolean? = null,
     @SerializedName("registration_date") var registrationDate: String? = null,
-    @SerializedName("tags") var tags: ArrayList<String> = arrayListOf(),
+    @SerializedName("tags") var tags: MutableList<String>? = null,
     @SerializedName("car_dealer_logo") var carDealerLogo: String? = null,
     @SerializedName("permalink") var permalink: String? = null,
     @SerializedName("seller_reputation") var sellerReputation: SellerReputationModel? = SellerReputationModel()

@@ -9,8 +9,8 @@ data class AttributesModel(
     @SerializedName("value_name") var valueName: String? = null,
     @SerializedName("attribute_group_id") var attributeGroupId: String? = null,
     @SerializedName("attribute_group_name") var attributeGroupName: String? = null,
-    @SerializedName("value_struct") var valueStruct: String? = null,
-    @SerializedName("values") var values: ArrayList<ValuesModel> = arrayListOf(),
-    @SerializedName("source") var source: Int? = null,
+    @SerializedName("value_struct") var valueStruct: ValueStructModel? = ValueStructModel(),
+    @SerializedName("values") var values: MutableList<ValuesModel>? = null,
+    @SerializedName("source") var source: Long? = null,
     @SerializedName("value_type") var valueType: String? = null
 )
