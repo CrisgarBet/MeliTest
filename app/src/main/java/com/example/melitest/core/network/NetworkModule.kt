@@ -1,4 +1,4 @@
-package com.example.melitest.core
+package com.example.melitest.core.network
 
 import com.example.melitest.data.network.SearchApiClient
 import com.google.gson.GsonBuilder

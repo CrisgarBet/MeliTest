@@ -1,18 +1,24 @@
 package com.example.melitest.ui.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.SearchView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.melitest.R
+import com.example.melitest.core.utils.Utils.hideKeyboard
 import com.example.melitest.data.enums.Site
 import com.example.melitest.data.model.ResultsModel
 import com.example.melitest.databinding.ActivityMainBinding
 import com.example.melitest.ui.adapter.ProductsAdapter
 import com.example.melitest.ui.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
@@ -42,6 +48,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query != null) {
             searchProducts(query)
+            val view: View? = this.currentFocus
+            if (view != null) {
+                hideKeyboard(view,binding.svProducts.context)
+            }
         };
         return true
     }
@@ -68,6 +78,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     private fun loadResults(results: MutableList<ResultsModel>) {
 
         binding.rvProducts.setHasFixedSize(true)
+
+        val divider = DividerItemDecoration(
+            binding.rvProducts.context, DividerItemDecoration.VERTICAL
+        )
+        divider.setDrawable(ContextCompat.getDrawable(baseContext, R.drawable.divider)!!)
+        binding.rvProducts.addItemDecoration(divider)
+
         binding.rvProducts.layoutManager = LinearLayoutManager(this)
         binding.rvProducts.adapter = ProductsAdapter(results)
     }

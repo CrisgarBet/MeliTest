@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue_meli">#3483fa</color>
+    <color name="green_meli">#00a650</color>
+    <color name="gray_meli">#666</color>
+    <color name="gray_divider_meli">#eee</color>
+    <color name="yellow_meli">#fff159</color>
 </resources>

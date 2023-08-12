@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Meli Test</string>
+    <string name="msg_payment">en %dx </string>
+    <string name="msg_shipping_es">Envío gratis</string>
+    <string name="msg_shipping_pt">Frete grátis</string>
+    <string name="msg_available_es">Disponible en %d colores</string>
+    <string name="msg_available_pt">Disponível em %d cores</string>
 </resources>
