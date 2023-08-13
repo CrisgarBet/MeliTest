@@ -1,6 +1,7 @@
 package com.example.melitest.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class ResultsModel(
 
@@ -39,4 +40,4 @@ data class ResultsModel(
     @SerializedName("discounts") var discounts: String? = null,
     @SerializedName("promotions") var promotions: MutableList<String>? = null,
     @SerializedName("inventory_id") var inventoryId: String? = null
-)
+) : Serializable

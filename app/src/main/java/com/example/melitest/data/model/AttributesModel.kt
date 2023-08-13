@@ -1,6 +1,7 @@
 package com.example.melitest.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class AttributesModel(
     @SerializedName("id") var id: String? = null,
@@ -13,4 +14,4 @@ data class AttributesModel(
     @SerializedName("values") var values: MutableList<ValuesModel>? = null,
     @SerializedName("source") var source: Float? = null,
     @SerializedName("value_type") var valueType: String? = null
-)
+) : Serializable

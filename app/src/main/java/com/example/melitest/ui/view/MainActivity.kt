@@ -1,6 +1,7 @@
 package com.example.melitest.ui.view
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -17,18 +18,14 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melitest.R
+import com.example.melitest.core.utils.Utils.getSpecificString
 import com.example.melitest.core.utils.Utils.hideKeyboard
-import com.example.melitest.core.utils.Utils.msgPlaceholder
-import com.example.melitest.data.enums.Site
 import com.example.melitest.data.model.ResultsModel
 import com.example.melitest.databinding.ActivityMainBinding
 import com.example.melitest.databinding.DialogCountryBinding
 import com.example.melitest.ui.adapter.ProductsAdapter
 import com.example.melitest.ui.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import kotlinx.coroutines.withTimeout
 
 
 @AndroidEntryPoint
@@ -107,7 +104,17 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         binding.rvProducts.addItemDecoration(divider)
 
         binding.rvProducts.layoutManager = LinearLayoutManager(this)
-        binding.rvProducts.adapter = ProductsAdapter(results)
+        binding.rvProducts.adapter = ProductsAdapter(results) { resultsModel ->
+            onItemSelected(
+                resultsModel
+            )
+        }
+    }
+
+    private fun onItemSelected(resultsModel: ResultsModel) {
+        val intent = Intent(this, DetailProduct::class.java)
+        intent.putExtra("resultsModel", resultsModel)
+        startActivity(intent)
     }
 
     private fun loadDialogCountry() {
@@ -134,16 +141,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                 }
 
                 override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
+                    parent: AdapterView<*>?, view: View?, position: Int, id: Long
                 ) {
                     var optionSelected = parent!!.getItemAtPosition(position).toString()
                     if (optionSelected.isNotEmpty()) {
                         dialog!!.dismiss()
                         siteSelected = optionSelected
-                        binding.svProducts.queryHint = msgPlaceholder(siteSelected, parent.context)
+                        binding.svProducts.queryHint = getSpecificString(siteSelected, parent.context,"msg_placeholder")
                         binding.titleSite.text = siteSelected
                         binding.svProducts.setQuery(binding.svProducts.query, true)
                         binding.svProducts.requestFocus()

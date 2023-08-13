@@ -1,6 +1,7 @@
 package com.example.melitest.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class InstallmentsModel(
 
@@ -9,4 +10,4 @@ data class InstallmentsModel(
     @SerializedName("rate") var rate: Float? = null,
     @SerializedName("currency_id") var currencyId: String? = null
 
-)
+) : Serializable

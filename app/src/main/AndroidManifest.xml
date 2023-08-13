@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MeliTest"
         android:allowBackup="true"
@@ -13,11 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeliTest"
+        android:largeHeap="true"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.view.DetailProduct"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.view.MainActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.app.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

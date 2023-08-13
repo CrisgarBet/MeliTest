@@ -1,6 +1,7 @@
 package com.example.melitest.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class MetricsModel(
 
@@ -9,4 +10,4 @@ data class MetricsModel(
     @SerializedName("delayed_handling_time") var delayedHandlingTime: DelayedHandlingTimeModel? = DelayedHandlingTimeModel(),
     @SerializedName("cancellations") var cancellations: CancellationsModel? = CancellationsModel()
 
-)
+) : Serializable

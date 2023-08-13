@@ -1,12 +1,31 @@
 <resources>
     <string name="app_name">Meli Test</string>
     <string name="msg_payment">en %dx </string>
-    <string name="msg_shipping_es">Envío gratis</string>
-    <string name="msg_shipping_pt">Frete grátis</string>
-    <string name="msg_available_es">Disponible en %d colores</string>
-    <string name="msg_available_pt">Disponível em %d cores</string>
+    <string name="msg_shipping_MCO">Envío gratis</string>
+    <string name="msg_shipping_MLA">Envío gratis</string>
+    <string name="msg_shipping_MLB">Frete grátis</string>
+    <string name="msg_available_MCO">Disponible en %d colores</string>
+    <string name="msg_available_MLA">Disponible en %d colores</string>
+    <string name="msg_available_MLB">Disponível em %d cores</string>
     <string name="msg_welcome">Por favor selecciona en cual sitio de mercadolibre deseas hacer tu búsqueda:</string>
-    <string name="msg_placeholder_es">Buscar productos, marcas y más…</string>
-    <string name="msg_placeholder_pt">Buscar produtos, marcas e muito mais…</string>
+    <string name="msg_placeholder_MCO">Buscar productos, marcas y más…</string>
+    <string name="msg_placeholder_MLA">Buscar productos, marcas y más…</string>
+    <string name="msg_placeholder_MLB">Buscar produtos, marcas e muito mais…</string>
     <string name="title_welcome">Bienvenido!</string>
+    <string name="condition_MCO">Nuevo</string>
+    <string name="condition_MLA">Nuevo</string>
+    <string name="condition_MLB">Novo</string>
+    <string name="title_stock_MCO">Stock disponible</string>
+    <string name="title_stock_MLA">Stock disponible</string>
+    <string name="title_stock_MLB">Estoque disponível</string>
+    <string name="stock_MCO">(%d disponibles)</string>
+    <string name="stock_MLA">(%d disponibles)</string>
+    <string name="stock_MLB">(%d disponíveis)</string>
+    <string name="unit_stock_MCO">Cantidad: 1</string>
+    <string name="unit_stock_MLA">Cantidad: 1</string>
+    <string name="unit_stock_MLB">Quantidade: 1</string>
+    <string name="buy_MCO">Comprar ahora</string>
+    <string name="buy_MLA">Comprar ahora</string>
+    <string name="buy_MLB">Comprar agora</string>
+
 </resources>

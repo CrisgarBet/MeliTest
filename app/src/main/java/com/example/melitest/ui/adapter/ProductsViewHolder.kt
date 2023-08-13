@@ -7,8 +7,8 @@ import com.example.melitest.R
 import com.example.melitest.core.utils.Utils.convertMoney
 import com.example.melitest.core.utils.Utils.formatMessagePayments
 import com.example.melitest.core.utils.Utils.formatRating
+import com.example.melitest.core.utils.Utils.getSpecificString
 import com.example.melitest.core.utils.Utils.msgAvailable
-import com.example.melitest.core.utils.Utils.msgShipping
 import com.example.melitest.data.model.ResultsModel
 import com.example.melitest.databinding.ItemProductBinding
 import com.squareup.picasso.Picasso
@@ -18,13 +18,13 @@ class ProductsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemProductBinding.bind((view))
 
     @SuppressLint("SetTextI18n")
-    fun render(resultsModel: ResultsModel) {
-        binding.tvTitle.text = resultsModel.title
+    fun render(resultsModel: ResultsModel, onClickListener: (ResultsModel) -> Unit) {
+        binding.tvTitle.text = resultsModel.title!!
         binding.tvPrice.text = convertMoney(
             resultsModel.siteId, resultsModel.sellerAddress?.country?.id, resultsModel.price
         )
         Picasso.get().load(resultsModel.thumbnail)
-            .placeholder(R.drawable.meli).resize(300, 300)
+            .placeholder(R.drawable.meli).fit()
             .centerInside()
             .error(R.drawable.meli).into(binding.ivProduct)
         binding.tvCuotes.text = formatMessagePayments(
@@ -35,7 +35,7 @@ class ProductsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             resultsModel.installments?.amount
         )
         if (resultsModel.shipping?.freeShipping == true) {
-            binding.tvSend.text = msgShipping(resultsModel.siteId, binding.tvSend.context)
+            binding.tvSend.text = getSpecificString(resultsModel.siteId, binding.tvSend.context, "msg_shipping")
         }
 
         if (resultsModel.orderBackend!! > 1) {
@@ -45,6 +45,10 @@ class ProductsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
         binding.rbSeller.rating =
             formatRating(resultsModel.seller?.sellerReputation?.transactions?.ratings)
+
+        itemView.setOnClickListener {
+            onClickListener(resultsModel)
+        }
     }
 
 }

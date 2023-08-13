@@ -2,12 +2,16 @@ package com.example.melitest.core.utils
 
 import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.Intent
+import android.content.res.Resources
+import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat.getSystemService
 import com.example.melitest.R
 import com.example.melitest.data.enums.Site
 import com.example.melitest.data.model.RatingsModel
+import java.io.Serializable
 import java.text.NumberFormat
 import java.util.Locale
 import kotlin.math.roundToInt
@@ -34,28 +38,18 @@ object Utils {
 
     fun formatMessagePayments(number: Float?, context: Context): String? {
         val msg = context.getText(R.string.msg_payment)
-        return "${msg.toString().replace("%d", number?.roundToInt().toString())} "
+        var response = ""
+        if (number != null) {
+            response = "${msg.toString().replace("%d", number?.roundToInt().toString())} "
+        }
+        return response
     }
 
     fun formatRating(ratingsModel: RatingsModel?): Float =
         ((ratingsModel?.positive!! + ratingsModel?.neutral!!) - ratingsModel?.negative!! / 3) * 5
 
-    fun msgShipping(site: String?, context: Context): String {
-        var msg = context.getString(R.string.msg_shipping_pt)
-        when (site) {
-            Site.MCO.toString(), Site.MLA.toString() -> msg =
-                context.getString(R.string.msg_shipping_es)
-        }
-        return msg
-    }
-
     fun msgAvailable(site: String?, context: Context, number: Float?): String? {
-        var msg = context.getString(R.string.msg_available_pt)
-        when (site) {
-            Site.MCO.toString(), Site.MLA.toString() -> msg =
-                context.getString(R.string.msg_available_es)
-        }
-        return msg?.replace("%d", number?.roundToInt().toString())
+        return getSpecificString(site,context,"msg_available")?.replace("%d", number?.roundToInt().toString())
     }
 
     fun hideKeyboard(view: View, context: Context) {
@@ -66,12 +60,24 @@ object Utils {
         }
     }
 
-    fun msgPlaceholder(site: String?, context: Context): String {
-        var msg = context.getString(R.string.msg_placeholder_pt)
-        when (site) {
-            Site.MCO.toString(), Site.MLA.toString() -> msg =
-                context.getString(R.string.msg_placeholder_es)
+
+    fun getSpecificString(site: String?, context: Context, key: String?): String {
+        var resId = resIdByName("${key}_${site}",context)
+
+        return context.getString(resId)
+    }
+
+    fun <T : Serializable?> getSerializable(intent: Intent, key: String, className: Class<T>): T {
+        return if (Build.VERSION.SDK_INT >= 33)
+            intent.getSerializableExtra(key, className)!!
+        else
+            intent.getSerializableExtra(key) as T
+    }
+
+    fun resIdByName(resIdName: String?, context: Context): Int {
+        resIdName?.let {
+            return context.resources.getIdentifier(it, "string", context.packageName)
         }
-        return msg
+        throw Resources.NotFoundException()
     }
 }

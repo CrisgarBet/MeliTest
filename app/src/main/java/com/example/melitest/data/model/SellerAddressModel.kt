@@ -1,6 +1,7 @@
 package com.example.melitest.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class SellerAddressModel(
     @SerializedName("comment") var comment: String? = null,
@@ -11,4 +12,4 @@ data class SellerAddressModel(
     @SerializedName("country") var country: CountryModel? = CountryModel(),
     @SerializedName("state") var state: StateModel? = StateModel(),
     @SerializedName("city") var city: CityModel? = CityModel()
-)
+) : Serializable
