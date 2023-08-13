@@ -9,6 +9,13 @@
     <style name="Theme.MeliTest" parent="Base.Theme.MeliTest" />
 
     <style name="progressBarMeli">
-        <item name="colorAccent">@color/yellow_meli</item> <!-- Whatever color you want-->
+        <item name="colorAccent">@color/yellow_meli</item>
+    </style>
+
+    <style name="Theme.app.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/yellow_meli</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/meli</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.MeliTest</item>
     </style>
 </resources>

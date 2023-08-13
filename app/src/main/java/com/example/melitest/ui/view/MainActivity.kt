@@ -11,6 +11,7 @@ import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val screenSplash = installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -59,6 +61,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
         loadDialogCountry()
         binding.svProducts.setOnQueryTextListener(this)
+
+
+        screenSplash.setKeepOnScreenCondition { false }
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
