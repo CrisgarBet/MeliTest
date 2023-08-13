@@ -26,6 +26,9 @@ import com.example.melitest.databinding.DialogCountryBinding
 import com.example.melitest.ui.adapter.ProductsAdapter
 import com.example.melitest.ui.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 
 
 @AndroidEntryPoint
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     private var dialogMainBinding: DialogCountryBinding? = null
     private var dialog: Dialog? = null
     private var siteSelected: String? = ""
+    private var options = mutableListOf("")
 
     private val searchViewModel: SearchViewModel by viewModels()
 
@@ -61,10 +65,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             binding.pbloading.isVisible = it
         })
 
-        loadDialogCountry()
+        searchViewModel.loadOptions.observe(this, Observer {
+            options.addAll(it)
+            loadDialogCountry()
+        })
         binding.svProducts.setOnQueryTextListener(this)
 
-        binding.fbModal.setOnClickListener {
+        binding.hearsite.setOnClickListener {
             loadDialogCountry()
         }
     }
@@ -72,10 +79,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query != null) {
             searchProducts(query)
-            val view: View? = this.currentFocus
-            if (view != null) {
-                hideKeyboard(view, binding.svProducts.context)
-            }
         };
         return true
     }
@@ -86,6 +89,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
     private fun searchProducts(search: String) {
         searchViewModel.searchProducts(siteSelected, search)
+        val view: View? = this.currentFocus
+        if (view != null) {
+            hideKeyboard(view, binding.svProducts.context)
+        }
     }
 
 
@@ -113,9 +120,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         )
         dialog!!.setContentView(dialogMainBinding!!.root)
 
-        var options = mutableListOf("Seleccione")
-        options.addAll(Site.values().map { it.name })
-
         val adapter = ArrayAdapter(
             this, android.R.layout.simple_spinner_item, options
         )
@@ -136,13 +140,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                     id: Long
                 ) {
                     var optionSelected = parent!!.getItemAtPosition(position).toString()
-
-                    if (optionSelected != "Seleccione") {
+                    if (optionSelected.isNotEmpty()) {
+                        dialog!!.dismiss()
                         siteSelected = optionSelected
                         binding.svProducts.queryHint = msgPlaceholder(siteSelected, parent.context)
-
+                        binding.titleSite.text = siteSelected
+                        binding.svProducts.setQuery(binding.svProducts.query, true)
                         binding.svProducts.requestFocus()
-                        dialog!!.dismiss()
                     }
                 }
 
