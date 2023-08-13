@@ -15,27 +15,26 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="@color/yellow_meli"
             android:padding="20dp">
-            <ImageView
-                android:id="@+id/ivProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:visibility="gone"
-                android:src="@drawable/meli_welcome"/>
 
             <TextView
-                android:id="@+id/tv_count"
-                android:layout_marginTop="@dimen/margin_item_top"
+                android:id="@+id/titleDialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/msg_welcome"
-                android:textSize="@dimen/title_text"
+                android:text="@string/title_welcome"
+                android:textSize="@dimen/title_modal"
                 android:textStyle="bold" />
 
+            <TextView
+                android:layout_marginTop="@dimen/margin_top_modal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_meli"
+                android:text="@string/msg_welcome"
+                android:textSize="@dimen/title_text"/>
+
             <Spinner
-                android:layout_marginTop="@dimen/margin_item_top"
+                android:layout_marginTop="@dimen/margin_top_modal"
                 android:id="@+id/spSite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

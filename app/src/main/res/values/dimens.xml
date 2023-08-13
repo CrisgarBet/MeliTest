@@ -8,4 +8,6 @@
     <dimen name="payment_text">14dp</dimen>
     <dimen name="shipping_text">13dp</dimen>
     <dimen name="available_text">13dp</dimen>
+    <dimen name="margin_top_modal">15dp</dimen>
+    <dimen name="title_modal">20dp</dimen>
 </resources>

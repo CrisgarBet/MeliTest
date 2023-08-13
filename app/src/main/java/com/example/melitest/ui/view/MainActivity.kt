@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        screenSplash.setKeepOnScreenCondition { false }
+
         searchViewModel.onCreate()
         searchViewModel.searchModel.observe(this, Observer {
             val results = it?.results
@@ -62,8 +64,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         loadDialogCountry()
         binding.svProducts.setOnQueryTextListener(this)
 
-
-        screenSplash.setKeepOnScreenCondition { false }
+        binding.fbModal.setOnClickListener {
+            loadDialogCountry()
+        }
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -118,7 +121,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         dialogMainBinding!!.spSite.adapter = adapter
-
+        dialogMainBinding!!.titleDialog.isVisible = siteSelected.isNullOrEmpty()
 
         dialogMainBinding!!.spSite.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
@@ -144,6 +147,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                 }
 
             }
+
 
         dialog!!.setCancelable(false)
         dialog!!.show()

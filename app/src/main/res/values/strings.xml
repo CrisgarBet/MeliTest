@@ -5,7 +5,8 @@
     <string name="msg_shipping_pt">Frete grátis</string>
     <string name="msg_available_es">Disponible en %d colores</string>
     <string name="msg_available_pt">Disponível em %d cores</string>
-    <string name="msg_welcome">Bienvenido! Por favor selecciona una de las siguientes opciones:</string>
+    <string name="msg_welcome">Por favor selecciona en cual sitio de mercadolibre deseas hacer tu búsqueda:</string>
     <string name="msg_placeholder_es">Buscar productos, marcas y más…</string>
     <string name="msg_placeholder_pt">Buscar produtos, marcas e muito mais…</string>
+    <string name="title_welcome">Bienvenido!</string>
 </resources>
