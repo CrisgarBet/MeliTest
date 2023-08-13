@@ -13,6 +13,6 @@ import retrofit2.http.Url
 interface SearchApiClient {
     @GET("{option}/search")
     suspend fun searchProducts(
-        @Path("option") site: String, @Query("q") query: String
+        @Path("option") site: String?, @Query("q") query: String
     ): Response<SearchModel>
 }

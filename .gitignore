@@ -33,7 +33,10 @@ build/
 captures/
 output.json 
 .gradle/
+gradle/
+.gradle
      
 #NDK
 obj/
 .externalNativeBuild
+/.gradle/

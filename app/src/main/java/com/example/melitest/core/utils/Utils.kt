@@ -60,13 +60,18 @@ object Utils {
 
     fun hideKeyboard(view: View, context: Context) {
         if (view != null) {
-            // on below line we are creating a variable
-            // for input manager and initializing it.
             val inputMethodManager =
                 context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-
-            // on below line hiding our keyboard.
-            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0)
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    fun msgPlaceholder(site: String?, context: Context): String {
+        var msg = context.getString(R.string.msg_placeholder_pt)
+        when (site) {
+            Site.MCO.toString(), Site.MLA.toString() -> msg =
+                context.getString(R.string.msg_placeholder_es)
+        }
+        return msg
     }
 }
