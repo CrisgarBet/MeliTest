@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class SearchProductsUseCase @Inject constructor(private val repository: SearchRepository) {
 
-    suspend fun searchProduct(site: String?, search: String): SearchModel? {
+    suspend fun searchProduct(site: String?, search: String?): SearchModel? {
         return repository.searchProducts(site, search)
     }
 

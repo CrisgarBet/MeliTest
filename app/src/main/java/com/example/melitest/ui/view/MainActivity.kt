@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melitest.R
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
     private val searchViewModel: SearchViewModel by viewModels()
 
-    val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
         if (result.resultCode == Activity.RESULT_OK) {
             loadDialogCountry()
         }
@@ -60,21 +59,21 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         screenSplash.setKeepOnScreenCondition { false }
 
         searchViewModel.onCreate()
-        searchViewModel.searchModel.observe(this, Observer {
+        searchViewModel.searchModel.observe(this) {
             val results = it?.results
             if (results != null) {
                 loadResults(results)
             }
-        })
+        }
 
-        searchViewModel.isLoading.observe(this, Observer {
+        searchViewModel.isLoading.observe(this) {
             binding.pbloading.isVisible = it
-        })
+        }
 
-        searchViewModel.loadOptions.observe(this, Observer {
+        searchViewModel.loadOptions.observe(this) {
             options.addAll(it)
             loadDialogCountry()
-        })
+        }
         binding.svProducts.setOnQueryTextListener(this)
 
         binding.hearsite.setOnClickListener {
@@ -83,9 +82,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if (query != null) {
-            searchProducts(query)
-        };
+        searchProducts(query)
         return true
     }
 
@@ -93,7 +90,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         return true
     }
 
-    private fun searchProducts(search: String) {
+    private fun searchProducts(search: String?) {
         searchViewModel.searchProducts(siteSelected, search)
         val view: View? = this.currentFocus
         if (view != null) {
@@ -152,7 +149,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                 override fun onItemSelected(
                     parent: AdapterView<*>?, view: View?, position: Int, id: Long
                 ) {
-                    var optionSelected = parent!!.getItemAtPosition(position).toString()
+                    val optionSelected = parent!!.getItemAtPosition(position).toString()
                     if (optionSelected.isNotEmpty()) {
                         dialog!!.dismiss()
                         siteSelected = optionSelected

@@ -22,7 +22,7 @@ class SearchViewModel @Inject constructor(private val searchProductsUseCase: Sea
         loadOptions()
     }
 
-    fun searchProducts(site: String?, query: String) {
+    fun searchProducts(site: String?, query: String?) {
         viewModelScope.launch {
             isLoading.postValue(true)
             val result: SearchModel? = searchProductsUseCase.searchProduct(site, query)
