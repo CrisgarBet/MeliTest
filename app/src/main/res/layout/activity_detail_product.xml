@@ -59,7 +59,6 @@
         </LinearLayout>
 
 
-
         <RelativeLayout
             android:id="@+id/linearcondition"
             android:layout_width="match_parent"
@@ -165,21 +164,6 @@
             tools:text="Envío gratis" />
 
         <TextView
-            android:id="@+id/tvAvailable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tvSend"
-            android:layout_marginLeft="@dimen/margin_item"
-            android:layout_marginTop="@dimen/margin_item_top"
-            android:layout_marginRight="@dimen/margin_item"
-            android:textColor="@color/gray_meli"
-            android:textSize="@dimen/detail_available_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSend"
-             android:visibility="invisible"
-            tools:text="title" />
-
-        <TextView
             android:id="@+id/titleStock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -189,10 +173,10 @@
             android:layout_marginRight="@dimen/margin_item"
             android:textColor="@color/black"
             android:textSize="@dimen/detail_available_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAvailable"
             android:textStyle="bold"
-            tools:text="title"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSend"
+            tools:text="title" />
 
         <RelativeLayout
             android:id="@+id/linearcantidad"
@@ -200,30 +184,31 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="@dimen/margin_item"
+            android:layout_marginTop="@dimen/margin_item"
             android:layout_marginRight="@dimen/margin_item"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleStock"
             android:gravity="center_vertical|center_horizontal"
-            android:layout_marginTop="@dimen/margin_item">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleStock">
+
             <TextView
                 android:id="@+id/tvcantidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginLeft="@dimen/margin_item"
-                android:textSize="@dimen/detail_available_text"
                 android:layout_alignParentStart="true"
-                tools:text="title"
-                tools:ignore="SpUsage" />
+                android:layout_marginLeft="@dimen/margin_item"
+                android:textColor="@color/black"
+                android:textSize="@dimen/detail_available_text"
+                tools:ignore="SpUsage"
+                tools:text="title" />
 
             <TextView
                 android:id="@+id/tvcantidaddisponibles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_item"
+                android:layout_toRightOf="@+id/tvcantidad"
                 android:textColor="@color/gray_meli"
                 android:textSize="@dimen/detail_available_text"
-                android:layout_toRightOf="@+id/tvcantidad"
-                android:layout_marginLeft="@dimen/margin_item"
                 tools:text="title2" />
 
             <ImageView
@@ -235,19 +220,230 @@
                 android:src="@drawable/arrow_meli" />
 
         </RelativeLayout>
-        
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btncomprar"
             style="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_item"
-            app:layout_constraintTop_toBottomOf="@+id/linearcantidad"
             android:layout_marginLeft="@dimen/margin_item"
+            android:layout_marginTop="@dimen/margin_item"
+            android:layout_marginRight="@dimen/margin_item"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:layout_marginRight="@dimen/margin_item">
+            app:layout_constraintTop_toBottomOf="@+id/linearcantidad"
+            tools:text="Comprar">
 
         </androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btncarrito"
+            style="@style/AppTheme.RoundedCornerMaterialButtonCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_item"
+            android:layout_marginTop="@dimen/margin_item"
+            android:layout_marginRight="@dimen/margin_item"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_meli"
+            app:layout_constraintTop_toBottomOf="@+id/btncomprar"
+            tools:text="carrito">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <TextView
+            android:id="@+id/tvTitleSeller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/margin_item"
+            android:layout_marginTop="@dimen/margin_item_seller"
+            android:layout_marginRight="@dimen/margin_item"
+            android:maxLines="2"
+            android:textSize="@dimen/detail_title_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btncarrito"
+            tools:text="title" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSeller"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleSeller">
+
+            <FrameLayout
+                android:id="@+id/frameseller"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/products_item_height"
+                android:layout_marginLeft="@dimen/margin_item"
+                android:layout_marginRight="@dimen/margin_item"
+                android:padding="5dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <ImageView
+                        android:id="@+id/ivSeller"
+                        android:layout_width="300px"
+                        android:layout_height="300px"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/meli" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvTstoreName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginLeft="@dimen/margin_item"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginRight="@dimen/margin_item"
+                                android:maxLines="2"
+                                android:textSize="@dimen/title_text"
+                                android:visibility="invisible"
+                                tools:text="title" />
+
+                            <TextView
+                                android:id="@+id/tvsellernickname"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/tvTitle"
+                                android:layout_marginLeft="@dimen/margin_item"
+                                android:layout_marginTop="@dimen/margin_item_top"
+                                android:layout_marginRight="@dimen/margin_item"
+                                android:textSize="@dimen/price_text"
+                                android:textStyle="bold"
+                                tools:text="price" />
+
+                            <TextView
+
+                                android:id="@+id/tvsellerSales"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/tvPrice"
+                                android:layout_marginLeft="@dimen/margin_item"
+                                android:layout_marginRight="@dimen/margin_item"
+                                android:textSize="@dimen/payment_text"
+                                tools:text="title" />
+
+                            <TextView
+                                android:id="@+id/tvsellerstatus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/tvCuotes"
+                                android:layout_marginLeft="@dimen/margin_item"
+                                android:layout_marginTop="@dimen/margin_item_top"
+                                android:layout_marginRight="@dimen/margin_item"
+                                android:textColor="@color/green_meli"
+                                android:textSize="@dimen/shipping_text"
+                                tools:text="Envío gratis" />
+
+                            <TextView
+                                android:id="@+id/tvsellerAvailable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/tvSend"
+                                android:layout_marginLeft="@dimen/margin_item"
+                                android:layout_marginTop="@dimen/margin_item_top"
+                                android:layout_marginRight="@dimen/margin_item"
+                                android:textColor="@color/gray_meli"
+                                android:textSize="@dimen/available_text"
+                                android:visibility="invisible"
+                                tools:text="title" />
+
+
+                            <RatingBar
+                                android:id="@+id/rbSellerrating"
+                                style="?android:attr/ratingBarStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/tvAvailable"
+                                android:layout_gravity="left|center_vertical"
+                                android:layout_marginLeft="@dimen/margin_item"
+                                android:layout_marginTop="@dimen/margin_item_top"
+                                android:layout_marginRight="@dimen/margin_item"
+                                android:foregroundGravity="left"
+                                android:isIndicator="true"
+                                android:numStars="5"
+                                android:progressBackgroundTint="@android:color/darker_gray"
+                                android:progressTint="@color/blue_meli"
+                                android:visibility="visible" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tvTitleProductDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/margin_item"
+            android:layout_marginTop="@dimen/margin_item_seller"
+            android:layout_marginRight="@dimen/margin_item"
+            android:maxLines="2"
+            android:textSize="@dimen/detail_title_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardSeller"
+            tools:text="title" />
+
+
+        <LinearLayout
+
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_item"
+            android:layout_marginTop="@dimen/margin_item_top"
+            android:layout_marginRight="@dimen/margin_item"
+            android:layout_marginBottom="@dimen/margin_item_top"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleProductDetail"
+            tools:background="@color/black">
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/margin_item"
+            android:layout_marginTop="@dimen/margin_item_top"
+            android:layout_marginRight="@dimen/margin_item"
+            android:layout_marginBottom="@dimen/margin_item_top"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container"
+            tools:background="@color/black">
+
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

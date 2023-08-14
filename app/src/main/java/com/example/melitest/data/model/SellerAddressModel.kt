@@ -9,7 +9,7 @@ data class SellerAddressModel(
     @SerializedName("id") var id: String? = null,
     @SerializedName("latitude") var latitude: String? = null,
     @SerializedName("longitude") var longitude: String? = null,
-    @SerializedName("country") var country: CountryModel? = CountryModel(),
-    @SerializedName("state") var state: StateModel? = StateModel(),
-    @SerializedName("city") var city: CityModel? = CityModel()
+    @SerializedName("country") var country: CountrySearchModel? = CountrySearchModel(),
+    @SerializedName("state") var state: StateSearchModel? = StateSearchModel(),
+    @SerializedName("city") var city: CitySearchModel? = CitySearchModel()
 ) : Serializable

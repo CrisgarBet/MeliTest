@@ -13,5 +13,6 @@ data class SellerModel(
     @SerializedName("tags") var tags: MutableList<String>? = null,
     @SerializedName("car_dealer_logo") var carDealerLogo: String? = null,
     @SerializedName("permalink") var permalink: String? = null,
-    @SerializedName("seller_reputation") var sellerReputation: SellerReputationModel? = SellerReputationModel()
+    @SerializedName("seller_reputation") var sellerReputation: SellerReputationModel? = SellerReputationModel(),
+    @SerializedName("eshop") var eshop: EshopModel? = EshopModel()
 ) : Serializable

@@ -27,5 +27,16 @@
     <string name="buy_MCO">Comprar ahora</string>
     <string name="buy_MLA">Comprar ahora</string>
     <string name="buy_MLB">Comprar agora</string>
+    <string name="cart_MCO">Agregar al carrito</string>
+    <string name="cart_MLA">Agregar al carrito</string>
+    <string name="cart_MLB">Adicionar ao carrinho</string>
+    <string name="seller_title_MCO">Información sobre el vendedor</string>
+    <string name="seller_title_MLA">Información sobre el vendedor</string>
+    <string name="seller_title_MLB">Informações sobre o vendedor</string>
+    <string name="gold">MercadoLíder Gold</string>
+    <string name="platinum">MercadoLíder Platinum</string>
+    <string name="product_title_MCO">Información del producto</string>
+    <string name="product_title_MLA">Información del producto</string>
+    <string name="product_title_MLB">Informação do produto</string>
 
 </resources>

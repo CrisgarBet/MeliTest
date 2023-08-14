@@ -5,6 +5,7 @@ import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Build
+import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat.getSystemService
@@ -49,7 +50,10 @@ object Utils {
         ((ratingsModel?.positive!! + ratingsModel?.neutral!!) - ratingsModel?.negative!! / 3) * 5
 
     fun msgAvailable(site: String?, context: Context, number: Float?): String? {
-        return getSpecificString(site,context,"msg_available")?.replace("%d", number?.roundToInt().toString())
+        return getSpecificString(site, context, "msg_available")?.replace(
+            "%d",
+            number?.roundToInt().toString()
+        )
     }
 
     fun hideKeyboard(view: View, context: Context) {
@@ -62,7 +66,7 @@ object Utils {
 
 
     fun getSpecificString(site: String?, context: Context, key: String?): String {
-        var resId = resIdByName("${key}_${site}",context)
+        val resId = resIdByName("${key}_${site}", context)
 
         return context.getString(resId)
     }
@@ -74,10 +78,14 @@ object Utils {
             intent.getSerializableExtra(key) as T
     }
 
-    fun resIdByName(resIdName: String?, context: Context): Int {
+    private fun resIdByName(resIdName: String?, context: Context): Int {
         resIdName?.let {
             return context.resources.getIdentifier(it, "string", context.packageName)
         }
         throw Resources.NotFoundException()
+    }
+
+    fun getSizeInDp(context: Context, r: Int?): Int {
+        return ((context.resources.getDimension(r!!) / context.resources.displayMetrics.density).toInt())
     }
 }

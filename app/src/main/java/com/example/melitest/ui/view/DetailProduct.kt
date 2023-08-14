@@ -1,16 +1,24 @@
 package com.example.melitest.ui.view
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.setPadding
 import com.example.melitest.R
 import com.example.melitest.core.utils.Utils
 import com.example.melitest.core.utils.Utils.getSerializable
+import com.example.melitest.core.utils.Utils.getSizeInDp
 import com.example.melitest.core.utils.Utils.getSpecificString
 import com.example.melitest.data.model.ResultsModel
 import com.example.melitest.databinding.ActivityDetailProductBinding
 import com.squareup.picasso.Picasso
 import kotlin.math.roundToInt
+
 
 class DetailProduct : AppCompatActivity() {
 
@@ -34,7 +42,7 @@ class DetailProduct : AppCompatActivity() {
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
     private fun loadDataDetail() {
 
         binding.titleSite.text = resultsModel.siteId
@@ -59,12 +67,6 @@ class DetailProduct : AppCompatActivity() {
                 getSpecificString(resultsModel.siteId, binding.tvSend.context, "msg_shipping")
         }
 
-        if (resultsModel.orderBackend!! > 1) {
-            binding.tvAvailable.text = Utils.msgAvailable(
-                resultsModel.siteId, binding.tvSend.context, resultsModel.orderBackend
-            )
-        }
-
         binding.rbSeller.rating =
             Utils.formatRating(resultsModel.seller?.sellerReputation?.transactions?.ratings)
 
@@ -84,8 +86,90 @@ class DetailProduct : AppCompatActivity() {
             )
         }
 
-        binding.tvcantidad.text = getSpecificString(resultsModel.siteId, binding.tvcantidad.context, "unit_stock")
+        binding.tvcantidad.text =
+            getSpecificString(resultsModel.siteId, binding.tvcantidad.context, "unit_stock")
         binding.btncomprar.text =
-            getSpecificString(resultsModel.siteId, binding.tvcantidad.context, "buy")
+            getSpecificString(resultsModel.siteId, binding.btncomprar.context, "buy")
+        binding.btncarrito.text =
+            getSpecificString(resultsModel.siteId, binding.btncarrito.context, "cart")
+
+        binding.tvTitleSeller.text =
+            getSpecificString(resultsModel.siteId, binding.tvTitleSeller.context, "seller_title")
+
+
+        binding.tvsellerSales.text =
+            "${resultsModel.sellerAddress?.state?.name} ${resultsModel.sellerAddress?.country?.name}"
+
+        binding.tvsellernickname.text = resultsModel.seller?.nickname
+
+        if (resultsModel.seller?.eshop != null) {
+            Picasso.get().load(resultsModel.seller?.eshop?.eshopLogoUrl)
+                .placeholder(R.drawable.meli).fit().centerInside()
+                .error(R.drawable.meli).into(binding.ivSeller)
+        }
+
+
+        binding.tvTitleProductDetail.text =
+            getSpecificString(
+                resultsModel.siteId,
+                binding.tvTitleProductDetail.context,
+                "product_title"
+            )
+
+
+        binding.rbSellerrating.rating =
+            Utils.formatRating(resultsModel.seller?.sellerReputation?.transactions?.ratings)
+
+        val statusMercadolider = resultsModel.seller?.sellerReputation?.powerSellerStatus
+
+        if (!statusMercadolider.isNullOrEmpty()) {
+            var msgMercadolider = ""
+
+            when (statusMercadolider) {
+                "gold" -> msgMercadolider = getString(R.string.gold)
+                "platinum" -> msgMercadolider = getString(R.string.platinum)
+            }
+            binding.tvsellerstatus.text = msgMercadolider
+        }
+
+        if (!resultsModel.attributes?.isNullOrEmpty()!!) {
+
+            for (attribute in resultsModel.attributes!!) {
+
+                val layout = LinearLayout(this)
+
+                layout.orientation = LinearLayout.HORIZONTAL
+                layout.gravity = Gravity.LEFT
+
+                val tvName = TextView(this)
+                val tvValue = TextView(this)
+
+                tvName.text = attribute.name
+                tvName.setTextColor(getColor(R.color.black))
+                tvName.textSize =
+                    getSizeInDp(tvName.context, R.dimen.payment_text).toFloat()
+                tvName.setTypeface(null, Typeface.BOLD)
+
+                tvValue.text = attribute.name
+                tvValue.setTextColor(getColor(R.color.gray_meli))
+                tvValue.textSize =
+                    getSizeInDp(tvValue.context, R.dimen.payment_text).toFloat()
+                tvValue.text = attribute.valueName
+
+                var param: LinearLayout.LayoutParams =
+                    LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT
+                    );
+                param.setMargins(
+                    0, 0, getSizeInDp(tvName.context, R.dimen.margin_item_seller), 0
+                )
+                tvName.layoutParams = param
+                layout.addView(tvName)
+                layout.addView(tvValue)
+                binding.container.addView(layout)
+            }
+
+        }
     }
 }

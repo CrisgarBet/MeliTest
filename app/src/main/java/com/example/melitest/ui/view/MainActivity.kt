@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -82,7 +83,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        searchProducts(query)
+        if (!query.isNullOrEmpty()){
+            searchProducts(query)
+        }
         return true
     }
 
@@ -118,9 +121,11 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     }
 
     private fun onItemSelected(resultsModel: ResultsModel) {
-        val intent = Intent(this, DetailProduct::class.java)
-        intent.putExtra("resultsModel", resultsModel)
-        startForResult.launch(intent)
+        if (resultsModel !=null){
+            val intent = Intent(this, DetailProduct::class.java)
+            intent.putExtra("resultsModel", resultsModel)
+            startForResult.launch(intent)
+        }
     }
 
     private fun loadDialogCountry() {

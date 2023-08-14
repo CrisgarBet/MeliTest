@@ -16,4 +16,6 @@
     <dimen name="detail_shipping_text">13dp</dimen>
     <dimen name="detail_payment_text">13dp</dimen>
     <dimen name="margin_image_detail">50dp</dimen>
+    <dimen name="margin_item_seller">35dp</dimen>
+    <dimen name="padding_detail">5dp</dimen>
 </resources>

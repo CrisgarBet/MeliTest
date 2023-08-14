@@ -26,18 +26,18 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_marginTop="@dimen/margin_top_modal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray_meli"
+                android:layout_marginTop="@dimen/margin_top_modal"
                 android:text="@string/msg_welcome"
-                android:textSize="@dimen/title_text"/>
+                android:textColor="@color/gray_meli"
+                android:textSize="@dimen/title_text" />
 
             <Spinner
-                android:layout_marginTop="@dimen/margin_top_modal"
                 android:id="@+id/spSite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_modal"
                 android:spinnerMode="dialog"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
