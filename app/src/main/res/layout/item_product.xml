@@ -90,6 +90,7 @@
                     android:layout_marginRight="@dimen/margin_item"
                     android:textColor="@color/gray_meli"
                     android:textSize="@dimen/available_text"
+                    android:visibility="invisible"
                     tools:text="title" />
 
 

@@ -8,7 +8,6 @@ import com.example.melitest.core.utils.Utils.convertMoney
 import com.example.melitest.core.utils.Utils.formatMessagePayments
 import com.example.melitest.core.utils.Utils.formatRating
 import com.example.melitest.core.utils.Utils.getSpecificString
-import com.example.melitest.core.utils.Utils.msgAvailable
 import com.example.melitest.data.model.ResultsModel
 import com.example.melitest.databinding.ItemProductBinding
 import com.squareup.picasso.Picasso
@@ -23,9 +22,7 @@ class ProductsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         binding.tvPrice.text = convertMoney(
             resultsModel.siteId, resultsModel.sellerAddress?.country?.id, resultsModel.price
         )
-        Picasso.get().load(resultsModel.thumbnail)
-            .placeholder(R.drawable.meli).fit()
-            .centerInside()
+        Picasso.get().load(resultsModel.thumbnail).placeholder(R.drawable.meli).fit().centerInside()
             .error(R.drawable.meli).into(binding.ivProduct)
         binding.tvCuotes.text = formatMessagePayments(
             resultsModel.installments?.quantity, binding.tvCuotes.context
@@ -35,14 +32,10 @@ class ProductsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             resultsModel.installments?.amount
         )
         if (resultsModel.shipping?.freeShipping == true) {
-            binding.tvSend.text = getSpecificString(resultsModel.siteId, binding.tvSend.context, "msg_shipping")
+            binding.tvSend.text =
+                getSpecificString(resultsModel.siteId, binding.tvSend.context, "msg_shipping")
         }
 
-        if (resultsModel.orderBackend!! > 1) {
-            binding.tvAvailable.text = msgAvailable(
-                resultsModel.siteId, binding.tvSend.context, resultsModel.orderBackend
-            )
-        }
         binding.rbSeller.rating =
             formatRating(resultsModel.seller?.sellerReputation?.transactions?.ratings)
 

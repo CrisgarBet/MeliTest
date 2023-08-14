@@ -1,5 +1,6 @@
 package com.example.melitest.ui.view
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -9,6 +10,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SearchView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -40,6 +43,12 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     private var options = mutableListOf("")
 
     private val searchViewModel: SearchViewModel by viewModels()
+
+    val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            loadDialogCountry()
+        }
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,7 +123,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     private fun onItemSelected(resultsModel: ResultsModel) {
         val intent = Intent(this, DetailProduct::class.java)
         intent.putExtra("resultsModel", resultsModel)
-        startActivity(intent)
+        startForResult.launch(intent)
     }
 
     private fun loadDialogCountry() {

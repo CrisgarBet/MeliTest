@@ -22,6 +22,11 @@ class DetailProduct : AppCompatActivity() {
         binding = ActivityDetailProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.hearsite.setOnClickListener {
+            setResult(RESULT_OK)
+            finish()
+        }
+
         resultsModel =
             getSerializable(intent, "resultsModel", ResultsModel::class.java)
 

@@ -15,38 +15,37 @@
         android:gravity="center"
         android:padding="10dp">
 
+        <LinearLayout
+            android:id="@+id/hearsite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow_meli"
+            android:gravity="left"
+            app:layout_constraintTop_toBottomOf="@+id/headerHome">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/settings" />
+
+            <TextView
+                android:id="@+id/titleSite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_item_top"
+                android:textColor="@color/gray_meli"
+                android:textSize="@dimen/title_text"
+                android:textStyle="bold"
+                tools:text="MCO" />
+
+
+        </LinearLayout>
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/meli_welcome" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/hearsite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/yellow_meli"
-        app:layout_constraintTop_toBottomOf="@+id/headerHome"
-        android:gravity="left"
-        android:padding="10dp">
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/settings" />
-
-        <TextView
-            android:id="@+id/titleSite"
-            android:layout_marginLeft="@dimen/margin_item_top"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/title_text"
-            android:textColor="@color/gray_meli"
-            tools:text="MCO"
-            android:textStyle="bold" />
-
 
     </LinearLayout>
 
@@ -58,7 +57,7 @@
         app:iconifiedByDefault="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hearsite"
+        app:layout_constraintTop_toBottomOf="@+id/headerHome"
         app:layout_constraintVertical_bias="0"
 
         />
