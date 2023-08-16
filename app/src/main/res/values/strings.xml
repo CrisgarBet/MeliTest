@@ -11,7 +11,7 @@
     <string name="msg_placeholder_MCO">Buscar productos, marcas y más…</string>
     <string name="msg_placeholder_MLA">Buscar productos, marcas y más…</string>
     <string name="msg_placeholder_MLB">Buscar produtos, marcas e muito mais…</string>
-    <string name="title_welcome">Bienvenido!</string>
+    <string name="title_welcome">¡Bienvenido!</string>
     <string name="condition_MCO">Nuevo</string>
     <string name="condition_MLA">Nuevo</string>
     <string name="condition_MLB">Novo</string>
@@ -38,5 +38,6 @@
     <string name="product_title_MCO">Información del producto</string>
     <string name="product_title_MLA">Información del producto</string>
     <string name="product_title_MLB">Informação do produto</string>
+    <string name="msg_error">¡Ocurrió un problema, por favor intenta de nuevo!</string>
 
 </resources>

@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.melitest.R
 import com.example.melitest.core.utils.Utils.getSpecificString
 import com.example.melitest.core.utils.Utils.hideKeyboard
+import com.example.melitest.core.utils.Utils.isOnline
 import com.example.melitest.data.model.ResultsModel
 import com.example.melitest.databinding.ActivityMainBinding
 import com.example.melitest.databinding.DialogCountryBinding
@@ -62,8 +64,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         searchViewModel.onCreate()
         searchViewModel.searchModel.observe(this) {
             val results = it?.results
-            if (results != null) {
+            if (!results.isNullOrEmpty()) {
                 loadResults(results)
+            } else{
+                Toast.makeText(this,R.string.msg_error, Toast.LENGTH_LONG).show()
             }
         }
 
@@ -84,7 +88,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (!query.isNullOrEmpty()) {
-            searchProducts(query)
+            if (isOnline(this)){
+                searchProducts(query)
+            }
         }
         return true
     }

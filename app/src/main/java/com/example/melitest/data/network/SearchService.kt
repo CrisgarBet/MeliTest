@@ -7,7 +7,7 @@ class SearchService @Inject constructor(private val api: SearchApiClient) {
     suspend fun searchProducts(site: String?, search: String?): SearchModel {
         val call = api.searchProducts(site,search)
         var response: SearchModel = SearchModel()
-        if (call.isSuccessful) {
+        if (call!=null && call.isSuccessful) {
             response = call.body()!!
         }
         return response
