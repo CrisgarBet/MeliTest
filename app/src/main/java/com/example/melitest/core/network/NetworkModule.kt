@@ -21,9 +21,9 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         val okHttpClient = OkHttpClient().newBuilder()
-            .connectTimeout(5, TimeUnit.SECONDS)
-            .readTimeout(5, TimeUnit.SECONDS)
-            .writeTimeout(5, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
             .build()
         return Retrofit.Builder()
             .baseUrl("https://api.mercadolibre.com/sites/")
