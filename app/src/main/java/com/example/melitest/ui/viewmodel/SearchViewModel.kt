@@ -10,6 +10,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Administra la capa UI del activity que muestra el resultado de la búsqueda.
+ * @param searchProductsUseCase capa de datos que nos suminstra el repository con el que se está trabajando.
+ */
+
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val searchProductsUseCase: SearchProductsUseCase) :
     ViewModel() {
@@ -22,6 +27,11 @@ class SearchViewModel @Inject constructor(private val searchProductsUseCase: Sea
         loadOptions()
     }
 
+    /**
+     * Función encardaga de realizar el llamado a la api para obtener una búsqueda.
+     * @param site hace referencia al sition de mercadolibre que se tiene seleccionado.
+     * @param query hace referencia a lo que ingresó el usuario para realizar la búsqueda.
+     */
     fun searchProducts(site: String?, query: String?) {
         viewModelScope.launch {
             isLoading.postValue(true)
@@ -33,6 +43,9 @@ class SearchViewModel @Inject constructor(private val searchProductsUseCase: Sea
         }
     }
 
+    /**
+     * Función encargada de cargar las opciones de los sitios de mercadolibre para la búsqueda.
+     */
     private fun loadOptions() {
         viewModelScope.launch {
             isLoading.postValue(true)

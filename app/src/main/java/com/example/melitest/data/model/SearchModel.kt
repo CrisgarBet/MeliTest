@@ -3,6 +3,10 @@ package com.example.melitest.data.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
+/**
+ * Modelo de datos que representa el resultado de una búsqueda.
+ */
+
 data class SearchModel(
     @SerializedName("site_id") var siteId: String? = null,
     @SerializedName("country_default_time_zone") var countryDefaultTimeZone: String? = null,
