@@ -5,13 +5,15 @@ import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Build
-import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import com.example.melitest.R
 import com.example.melitest.data.enums.Site
 import com.example.melitest.data.model.RatingsModel
+import com.example.melitest.data.model.SearchModel
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.IOException
 import java.io.Serializable
 import java.text.NumberFormat
 import java.util.Locale
@@ -64,7 +66,6 @@ object Utils {
         }
     }
 
-
     fun getSpecificString(site: String?, context: Context, key: String?): String {
         val resId = resIdByName("${key}_${site}", context)
 
@@ -88,4 +89,19 @@ object Utils {
     fun getSizeInDp(context: Context, r: Int?): Int {
         return ((context.resources.getDimension(r!!) / context.resources.displayMetrics.density).toInt())
     }
+
+    fun getMockkForTest(context: Context): SearchModel {
+
+        lateinit var jsonString: String
+        try {
+            jsonString = context.assets.open("searchModel.json")
+                .bufferedReader()
+                .use { it.readText() }
+        } catch (ioException: IOException) {
+        }
+
+        val searchModel = object : TypeToken<SearchModel>() {}.type
+        return Gson().fromJson(jsonString, searchModel)
+    }
+
 }

@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -44,11 +43,12 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
     private val searchViewModel: SearchViewModel by viewModels()
 
-    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            loadDialogCountry()
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                loadDialogCountry()
+            }
         }
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if (!query.isNullOrEmpty()){
+        if (!query.isNullOrEmpty()) {
             searchProducts(query)
         }
         return true
@@ -121,11 +121,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     }
 
     private fun onItemSelected(resultsModel: ResultsModel) {
-        if (resultsModel !=null){
-            val intent = Intent(this, DetailProduct::class.java)
-            intent.putExtra("resultsModel", resultsModel)
-            startForResult.launch(intent)
-        }
+        val intent = Intent(this, DetailProduct::class.java)
+        intent.putExtra("resultsModel", resultsModel)
+        startForResult.launch(intent)
     }
 
     private fun loadDialogCountry() {
@@ -158,7 +156,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                     if (optionSelected.isNotEmpty()) {
                         dialog!!.dismiss()
                         siteSelected = optionSelected
-                        binding.svProducts.queryHint = getSpecificString(siteSelected, parent.context,"msg_placeholder")
+                        binding.svProducts.queryHint =
+                            getSpecificString(siteSelected, parent.context, "msg_placeholder")
                         binding.titleSite.text = siteSelected
                         binding.svProducts.setQuery(binding.svProducts.query, true)
                         binding.svProducts.requestFocus()

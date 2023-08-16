@@ -1,6 +1,5 @@
 package com.example.melitest.ui.adapter
 
-import android.content.DialogInterface.OnClickListener
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,11 +7,12 @@ import com.example.melitest.R
 import com.example.melitest.data.model.ResultsModel
 
 class ProductsAdapter(
-    private var productsList: MutableList<ResultsModel> = ArrayList(), private val onClickListener: (ResultsModel) -> Unit
+    private var productsList: MutableList<ResultsModel> = ArrayList(),
+    private val onClickListener: (ResultsModel) -> Unit
 ) :
     RecyclerView.Adapter<ProductsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
-        var layoutInflater = LayoutInflater.from(parent.context)
+        val layoutInflater = LayoutInflater.from(parent.context)
         return ProductsViewHolder(layoutInflater.inflate(R.layout.item_product, parent, false))
     }
 

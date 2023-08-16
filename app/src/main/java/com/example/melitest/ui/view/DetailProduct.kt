@@ -1,14 +1,12 @@
 package com.example.melitest.ui.view
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.setPadding
 import com.example.melitest.R
 import com.example.melitest.core.utils.Utils
 import com.example.melitest.core.utils.Utils.getSerializable
@@ -42,7 +40,7 @@ class DetailProduct : AppCompatActivity() {
 
     }
 
-    @SuppressLint("SetTextI18n", "ResourceAsColor")
+    @SuppressLint("SetTextI18n", "ResourceAsColor", "RtlHardcoded")
     private fun loadDataDetail() {
 
         binding.titleSite.text = resultsModel.siteId
@@ -132,7 +130,7 @@ class DetailProduct : AppCompatActivity() {
             binding.tvsellerstatus.text = msgMercadolider
         }
 
-        if (!resultsModel.attributes?.isNullOrEmpty()!!) {
+        if (!resultsModel.attributes?.isEmpty()!!) {
 
             for (attribute in resultsModel.attributes!!) {
 
@@ -156,11 +154,11 @@ class DetailProduct : AppCompatActivity() {
                     getSizeInDp(tvValue.context, R.dimen.payment_text).toFloat()
                 tvValue.text = attribute.valueName
 
-                var param: LinearLayout.LayoutParams =
+                val param: LinearLayout.LayoutParams =
                     LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.MATCH_PARENT
-                    );
+                    )
                 param.setMargins(
                     0, 0, getSizeInDp(tvName.context, R.dimen.margin_item_seller), 0
                 )

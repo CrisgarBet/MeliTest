@@ -16,7 +16,7 @@ class SearchViewModel @Inject constructor(private val searchProductsUseCase: Sea
 
     val searchModel = MutableLiveData<SearchModel?>()
     val loadOptions = MutableLiveData<List<String>>()
-    val isLoading = MutableLiveData<Boolean>(false)
+    val isLoading = MutableLiveData(false)
 
     fun onCreate() {
         loadOptions()
@@ -33,14 +33,12 @@ class SearchViewModel @Inject constructor(private val searchProductsUseCase: Sea
         }
     }
 
-    fun loadOptions() {
+    private fun loadOptions() {
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = Site.values().map { it.name }
-            if (result != null) {
-                loadOptions.postValue(result)
-                isLoading.postValue(false)
-            }
+            loadOptions.postValue(result)
+            isLoading.postValue(false)
         }
     }
 }
