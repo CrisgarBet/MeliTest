@@ -7,10 +7,10 @@ Aplicación Android que consume la API de Meli y permite buscar cualquier produc
 
 ### Datos tecnicos del proyecto
 ***
-Binding
-Arquitectura MVVM
-Clean architecture
-Retrofit
-Corrutinas
-Dagger Hilt - Inyección de dependecias
-Unit test
+- Binding
+- Arquitectura MVVM
+- Clean architecture
+- Retrofit
+- Corrutinas
+- Dagger Hilt - Inyección de dependecias
+- Unit test
