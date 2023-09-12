@@ -1,15 +1,15 @@
 # MeliTest
 
-### Información general
+### General Information
 ***
-Aplicación Android que consume la API de Meli y permite buscar cualquier producto en 3 sitios de Mercadolibre (Argentina, Brasil, Colombia), listando los productos encontrados y mostrando el detalle.
+The Android project, developed in Kotlin, leverages the capabilities of the Meli API to facilitate product searches across three distinct MercadoLibre platforms: Argentina, Brazil, and Colombia. Through its intuitive user interface, users can seamlessly browse product listings, access a comprehensive list of search results, and delve into detailed views of each item. The app prioritizes efficient data retrieval and presentation, ensuring users have immediate access to the latest offerings on MercadoLibre.
 
-### Datos tecnicos del proyecto
+### Technical Details of the Project
 ***
 - Binding
-- Arquitectura MVVM
-- Clean architecture
+- MVVM Architecture
+- Clean Architecture
 - Retrofit
-- Corrutinas
-- Dagger Hilt - Inyección de dependecias
-- Unit test
+- Coroutines
+- Dagger Hilt - Dependency Injection
+- Unit Test
