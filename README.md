@@ -1,5 +1,4 @@
 # MeliTest
-Prueba técnica para Android Developer
 
 ### Información general
 ***
